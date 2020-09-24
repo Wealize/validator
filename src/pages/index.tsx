@@ -3,8 +3,7 @@ import styled from 'styled-components'
 
 const Index = () => (
   <StyledDiv data-cy="title">
-    Frontend template
-    <span>by Wealize</span>
+    <span>RealFund validator</span>
   </StyledDiv>
 )
 
