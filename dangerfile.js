@@ -5,7 +5,7 @@ const path = require('path')
 
 const istanbulCoverage = require('danger-plugin-istanbul-coverage')
   .istanbulCoverage
-const jiraIssue = require('danger-plugin-jira-issue').default
+// const jiraIssue = require('danger-plugin-jira-issue').default
 
 const getEslintMarkdown = (eslintOutput, files) => {
   let eslintMarkdown =
@@ -86,12 +86,12 @@ if (fs.existsSync('coverage/coverage-summary.json')) {
   })
 }
 
-jiraIssue({
-  key: '[PROJECT-JIRA-CODE]',
-  url: 'https://theneonproject.atlassian.net/browse',
-  emoji: ':paperclip:',
-  location: 'title'
-})
+// jiraIssue({
+//   key: '[PROJECT-JIRA-CODE]',
+//   url: 'https://theneonproject.atlassian.net/browse',
+//   emoji: ':paperclip:',
+//   location: 'title'
+// })
 
 if (fs.existsSync('eslint.json')) {
   const eslintOutput = JSON.parse(fs.readFileSync('eslint.json', 'utf8'))
