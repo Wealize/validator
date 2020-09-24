@@ -4,7 +4,7 @@
   "description": "RealFund white paper validator and Alastria blockchain related business logic",
   "repository": "git@github.com:Wealize/realfund-validator.git",
   "author": "Wealize",
-  "license": "MIT",
+  "license": "None",
   "private": true,
   "scripts": {
     "build": "next build",
