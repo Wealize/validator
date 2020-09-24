@@ -15,7 +15,8 @@
     "jest-with-coverage": "jest --coverage",
     "jest-collect-coverage": "jest --collectCoverage --coverageReporters=json-summary",
     "cypress-run": "cypress run",
-    "cypress": "start-server-and-test dev http://localhost:3000 cypress-run"
+    "cypress": "start-server-and-test dev http://localhost:3000 cypress-run",
+    "local-ethereum": "ganache-cli"
   },
   "dependencies": {
     "next": "^9.3.6",
