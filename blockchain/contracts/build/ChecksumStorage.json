@@ -101,24 +101,14 @@
   "ast": {
     "absolutePath": "/Users/danielluquequintana/Wealize/realfund-validator/blockchain/contracts/src/ChecksumStorage.sol",
     "exportedSymbols": {
-      "ChecksumStorage": [
-        59
-      ]
+      "ChecksumStorage": [59]
     },
     "id": 60,
     "nodeType": "SourceUnit",
     "nodes": [
       {
         "id": 1,
-        "literals": [
-          "solidity",
-          ">=",
-          "0.4",
-          ".22",
-          "<",
-          "0.8",
-          ".0"
-        ],
+        "literals": ["solidity", ">=", "0.4", ".22", "<", "0.8", ".0"],
         "nodeType": "PragmaDirective",
         "src": "33:32:0"
       },
@@ -129,9 +119,7 @@
         "documentation": null,
         "fullyImplemented": true,
         "id": 59,
-        "linearizedBaseContracts": [
-          59
-        ],
+        "linearizedBaseContracts": [59],
         "name": "ChecksumStorage",
         "nodeType": "ContractDefinition",
         "nodes": [
@@ -869,24 +857,14 @@
   "legacyAST": {
     "absolutePath": "/Users/danielluquequintana/Wealize/realfund-validator/blockchain/contracts/src/ChecksumStorage.sol",
     "exportedSymbols": {
-      "ChecksumStorage": [
-        59
-      ]
+      "ChecksumStorage": [59]
     },
     "id": 60,
     "nodeType": "SourceUnit",
     "nodes": [
       {
         "id": 1,
-        "literals": [
-          "solidity",
-          ">=",
-          "0.4",
-          ".22",
-          "<",
-          "0.8",
-          ".0"
-        ],
+        "literals": ["solidity", ">=", "0.4", ".22", "<", "0.8", ".0"],
         "nodeType": "PragmaDirective",
         "src": "33:32:0"
       },
@@ -897,9 +875,7 @@
         "documentation": null,
         "fullyImplemented": true,
         "id": 59,
-        "linearizedBaseContracts": [
-          59
-        ],
+        "linearizedBaseContracts": [59],
         "name": "ChecksumStorage",
         "nodeType": "ContractDefinition",
         "nodes": [
@@ -1638,9 +1614,24 @@
     "name": "solc",
     "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "83584648538": {
+      "events": {
+        "0x475e39464b473d2caca79a72e3952011c9081ed5b8dc8f4bd0cfbec9f6ea0ef5": {
+          "anonymous": false,
+          "inputs": [],
+          "name": "Stored",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xb139C5437Fd090Be958325E2Ab842Cc444Dad1c6",
+      "transactionHash": "0x877f005f14d27e41e10d956e51a3b93726180529a4bae32905908c17476d197d"
+    }
+  },
   "schemaVersion": "3.0.23",
-  "updatedAt": "2020-09-24T13:25:35.108Z",
+  "updatedAt": "2020-09-24T14:20:49.082Z",
+  "networkType": "quorum",
   "devdoc": {
     "methods": {}
   },
