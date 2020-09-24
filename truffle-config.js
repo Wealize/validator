@@ -95,5 +95,8 @@ module.exports = {
       //  evmVersion: "byzantium"
       // }
     }
-  }
+  },
+  contracts_directory: "./blockchain/contracts/src",
+  contracts_build_directory: "./blockchain/contracts/build",
+  migrations_directory: "./blockchain/migrations"
 }
