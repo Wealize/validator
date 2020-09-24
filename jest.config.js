@@ -4,6 +4,7 @@ module.exports = {
   coverageDirectory: 'coverage',
   testPathIgnorePatterns: [
     '<rootDir>/__tests__/e2e',
-    '<rootDir>/__tests__/__mocks__'
+    '<rootDir>/__tests__/__mocks__',
+    '<rootDir>/test'
   ]
 }
