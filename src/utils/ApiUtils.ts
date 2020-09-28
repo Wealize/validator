@@ -20,7 +20,6 @@ export const getFileHash = (
     const form = new formidable.IncomingForm()
     form.hash = 'sha256'
     form.parse(req, (error, _field: Fields, file: Files) => {
-      console.log(_field)
       if (error) {
         reject(new Error(`There was a server error: ${error}`))
       }

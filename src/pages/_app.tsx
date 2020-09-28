@@ -2,6 +2,9 @@ import React from 'react'
 import App from 'next/app'
 import { Reset } from 'styled-reset'
 
+import 'antd/dist/antd.css'
+
+import Head from '../components/Head'
 import Global from '../components/Global'
 
 class ExtendedApp extends App {
@@ -10,6 +13,7 @@ class ExtendedApp extends App {
 
     return (
       <React.Fragment>
+        <Head />
         <Reset />
         <Global />
         <Component {...pageProps} />
