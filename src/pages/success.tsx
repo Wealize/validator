@@ -63,18 +63,6 @@ const SuccessPage = () => {
   )
 }
 
-SuccessPage.getInitialProps = async ({ res }: NextPageContext) => {
-  const isSSR = !!res
-
-  // Disable this page to be access with URL: only client can do it using Router
-  if (isSSR) {
-    res?.writeHead(301, { Location: '/' })
-    res?.end()
-  }
-
-  return {}
-}
-
 const SuccessTitle = styled.h2`
   margin-top: 100px;
   text-align: center;

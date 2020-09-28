@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-expressions */
 import React from 'react'
-import { NextPageContext } from 'next'
 import { useRouter } from 'next/router'
 import { Button, Col, Row } from 'antd'
 import styled from 'styled-components'
@@ -58,17 +57,6 @@ const ErrorPage = () => {
   )
 }
 
-ErrorPage.getInitialProps = async ({ res }: NextPageContext) => {
-  const isSSR = !!res
-
-  // Disable this page to be access with URL: only client can do it using Router
-  if (isSSR) {
-    res?.writeHead(301, { Location: '/' })
-    res?.end()
-  }
-
-  return {}
-}
 const ErrorTitle = styled.h2`
   margin-top: 100px;
   text-align: center;
