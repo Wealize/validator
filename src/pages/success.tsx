@@ -22,7 +22,7 @@ const SuccessPage = () => {
           xl={{ span: 10, push: 7 }}
         >
           <SuccessTitle data-cy="title">
-            El fichero ha sido verificado
+            Tu documento ha sido contrastado
           </SuccessTitle>
         </Col>
       </Row>
@@ -34,30 +34,35 @@ const SuccessPage = () => {
         >
           <SuccessParagraph data-cy="first-paragraph">
             <Paragraph>
-              El proceso ha sido llevado a cabo con éxito.
-              <br />
-              El fichero ha sido verificado y se corresponde con los datos
-              almacenados en blockchain
+              El proceso ha sido llevado cabo con éxito. <br />
+              Tu documento corresponde con una notarización en la RedT de
+              Alastria.
             </Paragraph>
           </SuccessParagraph>
         </Col>
       </Row>
 
-      <Row justify={'center'}>
-        <BackButtonContainer>
-          <PrimaryButton>
-            <Button
-              size="large"
-              data-cy="send-button"
-              type="primary"
-              onClick={() => {
-                router.push('/')
-              }}
-            >
-              Verificar otro fichero
-            </Button>
-          </PrimaryButton>
-        </BackButtonContainer>
+      <Row>
+        <Col
+          xs={{ span: 18, push: 3 }}
+          sm={{ span: 18, push: 3 }}
+          lg={{ span: 10, push: 7 }}
+        >
+          <BackButtonContainer>
+            <PrimaryButton>
+              <Button
+                size="large"
+                data-cy="send-button"
+                type="primary"
+                onClick={() => {
+                  router.push('/')
+                }}
+              >
+                Verificar otro fichero
+              </Button>
+            </PrimaryButton>
+          </BackButtonContainer>
+        </Col>
       </Row>
     </div>
   )
@@ -65,13 +70,13 @@ const SuccessPage = () => {
 
 const SuccessTitle = styled.h2`
   margin-top: 100px;
-  text-align: center;
   margin-bottom: 30px;
+  line-height: 1.25;
+  letter-spacing: -0.45px;
 `
 
 const SuccessParagraph = styled.div`
-  text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 `
 
 const BackButtonContainer = styled.div`

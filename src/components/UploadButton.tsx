@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
-import { disabledGray } from '../theme/color'
+import { disabledGray, primary } from '../theme/color'
 
 const UploadButton = styled.div`
   .ant-btn {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: normal;
     font-size: 14px;
     line-height: 22px;
@@ -14,21 +14,14 @@ const UploadButton = styled.div`
     color: rgba(0, 0, 0, 0.65);
   }
 
-  button:disabled {
-    border: 1px solid rgb(217, 217, 217);
-    background: rgba(0, 0, 0, 0.04);
-    color: rgba(0, 0, 0, 0.25);
-    box-shadow: none;
-  }
-
   button:hover {
-    border: 1px solid #03b2b0;
-    color: #03b2b0;
+    border: 1px solid ${primary};
+    color: ${primary};
   }
 
   button:active {
-    border: 1px solid #03b2b0;
-    color: #008281;
+    border: 1px solid ${primary};
+    color: ${primary};
   }
 `
 

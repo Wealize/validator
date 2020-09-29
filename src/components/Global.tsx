@@ -19,7 +19,7 @@ const Global = createGlobalStyle`
 
   h1 {
     color: ${black};
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: bold;
     font-size: 28.8px;
     letter-spacing: -0.45px;
@@ -34,7 +34,7 @@ const Global = createGlobalStyle`
 
   h2 {
     color: ${blackHigh};
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: bold;
     font-size: 25.63px;
     letter-spacing: -0.21px;

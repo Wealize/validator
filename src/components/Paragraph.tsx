@@ -4,7 +4,7 @@ import { black } from '../theme/color'
 
 const Paragraph = styled.div`
   color: ${black};
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: normal;
   font-size: 16px;
   letter-spacing: 0.44px;

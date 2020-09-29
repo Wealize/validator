@@ -56,48 +56,27 @@ const FileVerification: NextPage<{}> = () => {
       <IndexContainer>
         <Row>
           <Col
-            xs={{ span: 18, push: 2 }}
-            sm={{ span: 16, push: 4 }}
-            md={{ span: 18, push: 2 }}
-            lg={{ span: 11, push: 2 }}
-            xl={{ span: 10, push: 3 }}
+            xs={{ span: 20, push: 2 }}
+            lg={{ span: 14, push: 2 }}
+            xl={{ span: 14, push: 3 }}
           >
             <IndexTitle data-cy="title">
-              Bienvenido al servicio de verificación de ficheros
+              Bienvenido/a al servicio de verificación de documentos
             </IndexTitle>
           </Col>
         </Row>
         <Row>
           <Col
-            xs={{ span: 18, push: 2 }}
-            sm={{ span: 16, push: 4 }}
-            md={{ span: 18, push: 2 }}
-            lg={{ span: 11, push: 2 }}
+            xs={{ span: 20, push: 2 }}
+            lg={{ span: 14, push: 2 }}
             xl={{ span: 10, push: 3 }}
           >
             <Paragraph>
               <IndexParagraph data-cy="first-paragraph">
-                Mediante este servicio queremos brindarte la posibilidad de
-                verificar que tu fichero está almacenado en una blockchain de
-                una tercera parte (Alastria) y contiene las mismas condiciones.
-                Con ese servicio queremos dar toda la transparencia posible
-                haciendo seguro y confiable nuestros procesos.
-              </IndexParagraph>
-            </Paragraph>
-          </Col>
-        </Row>
-        <Row>
-          <Col
-            xs={{ span: 18, push: 2 }}
-            sm={{ span: 16, push: 4 }}
-            md={{ span: 18, push: 2 }}
-            lg={{ span: 11, push: 2 }}
-            xl={{ span: 10, push: 3 }}
-          >
-            <Paragraph>
-              <IndexParagraph data-cy="second-paragraph">
-                Para poder hacer la verificación adjunta el archivo y haz click
-                en &quot;Subir fichero&quot;.
+                Wealize te permite contrastar un documento en tu poder con un
+                documento previamente notarizado en la RedT de Alastria. <br />
+                Para poder hacer la verificación adjunta tu archivo y haz click
+                en “ENVIAR”.
               </IndexParagraph>
             </Paragraph>
           </Col>
@@ -105,11 +84,11 @@ const FileVerification: NextPage<{}> = () => {
 
         <Row>
           <Col
-            xs={{ span: 18, push: 2 }}
-            sm={{ span: 10, push: 4 }}
-            md={{ span: 10, push: 2 }}
+            xs={{ span: 14, push: 2 }}
+            md={{ span: 7, push: 2 }}
             lg={{ span: 6, push: 2 }}
             xl={{ span: 4, push: 3 }}
+            xxl={{ span: 3, push: 3 }}
           >
             <IndexUploadContainer
               data-cy="upload-input"
@@ -120,7 +99,7 @@ const FileVerification: NextPage<{}> = () => {
               <UploadButton>
                 <Button data-cy="upload-button">
                   <UploadOutlined />
-                  Seleccionar fichero
+                  Adjuntar documento
                 </Button>
               </UploadButton>
             </IndexUploadContainer>
@@ -129,11 +108,11 @@ const FileVerification: NextPage<{}> = () => {
 
         <Row>
           <Col
-            xs={{ span: 18, push: 2 }}
-            sm={{ span: 10, push: 4 }}
-            md={{ span: 10, push: 2 }}
-            lg={{ span: 6, push: 2 }}
-            xl={{ span: 6, push: 3 }}
+            xs={{ span: 10, push: 2 }}
+            md={{ span: 5, push: 2 }}
+            lg={{ span: 4, push: 2 }}
+            xl={{ span: 3, push: 3 }}
+            xxl={{ span: 2, push: 3 }}
           >
             <IndexSendContainer>
               <PrimaryButton>
@@ -144,7 +123,7 @@ const FileVerification: NextPage<{}> = () => {
                   disabled={!fileIsLoaded}
                   onClick={uploadFile}
                 >
-                  Subir fichero
+                  Enviar
                 </Button>
               </PrimaryButton>
             </IndexSendContainer>
@@ -177,22 +156,18 @@ const IndexTitle = styled.h1`
 `
 
 const IndexParagraph = styled.p`
-  margin-bottom: 32px;
-
-  ${media.greaterThan('lg')`
-  margin-bottom: 16px;
-  `}
+  margin-bottom: 64px;
 `
 
 const IndexUploadContainer = styled(Upload)`
   width: 100%;
 
   .ant-upload {
-    width: inherit;
+    width: 100%;
     margin-bottom: 33px;
   }
   .ant-btn {
-    width: inherit;
+    width: 100%;
   }
   .ant-upload-list {
     display: none;
@@ -205,7 +180,7 @@ const IndexSendContainer = styled.div`
   .ant-btn {
     background-color: ${primary};
     color: ${black};
-    width: inherit;
+    width: 100%;
   }
 `
 

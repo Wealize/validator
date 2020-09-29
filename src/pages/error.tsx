@@ -31,27 +31,34 @@ const ErrorPage = () => {
         >
           <ErrorParagraph data-cy="first-paragraph">
             <Paragraph>
-              El fichero no corresponde con el almacenado en blockchain
+              No encontramos este documento en la RedT de Alastria. <br />
+              Por favor, confirma tu fichero y vuelve a intentarlo.
             </Paragraph>
           </ErrorParagraph>
         </Col>
       </Row>
 
-      <Row justify={'center'}>
-        <BackButtonContainer>
-          <PrimaryButton>
-            <Button
-              size="large"
-              data-cy="send-button"
-              type="primary"
-              onClick={() => {
-                router.push('/')
-              }}
-            >
-              Verificar otro fichero
-            </Button>
-          </PrimaryButton>
-        </BackButtonContainer>
+      <Row>
+        <Col
+          xs={{ span: 20, push: 2 }}
+          sm={{ span: 18, push: 3 }}
+          lg={{ span: 10, push: 7 }}
+        >
+          <BackButtonContainer>
+            <PrimaryButton>
+              <Button
+                size="large"
+                data-cy="send-button"
+                type="primary"
+                onClick={() => {
+                  router.push('/')
+                }}
+              >
+                Volver
+              </Button>
+            </PrimaryButton>
+          </BackButtonContainer>
+        </Col>
       </Row>
     </div>
   )
@@ -59,13 +66,13 @@ const ErrorPage = () => {
 
 const ErrorTitle = styled.h2`
   margin-top: 100px;
-  text-align: center;
   margin-bottom: 30px;
+  line-height: 1.25;
+  letter-spacing: -0.45px;
 `
 
 const ErrorParagraph = styled.div`
-  text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 1.5rem;
 `
 
 const BackButtonContainer = styled.div`
