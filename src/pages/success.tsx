@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-expressions */
 import React from 'react'
-import { NextPageContext } from 'next'
 import { useRouter } from 'next/router'
 import { Button, Col, Row } from 'antd'
 import styled from 'styled-components'
