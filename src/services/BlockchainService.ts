@@ -27,6 +27,14 @@ class BlockchainService {
     const isStored = await this.contract.methods.isStored(contractHash).call()
     return isStored
   }
+
+  public async getTimestamp() {
+    const { blockHash } = await this.web3Instance.eth.getTransaction(
+      process.env.BLOCK_HASH
+    )
+    const { timestamp } = await this.web3Instance.eth.getBlock(blockHash)
+    return timestamp
+  }
 }
 
 export default BlockchainService

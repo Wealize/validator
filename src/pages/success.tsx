@@ -3,6 +3,7 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import { Button, Col, Row } from 'antd'
 import styled from 'styled-components'
+import moment from 'moment'
 
 import { primary, black } from '../theme/color'
 import Paragraph from '../components/Paragraph'
@@ -10,6 +11,7 @@ import PrimaryButton from '../components/PrimaryButton'
 
 const SuccessPage = () => {
   const router = useRouter()
+  const timestamp = parseInt(router.query.timestamp as string)
 
   return (
     <div>
@@ -35,7 +37,8 @@ const SuccessPage = () => {
             <Paragraph>
               El proceso ha sido llevado cabo con éxito. <br />
               Tu documento corresponde con una notarización en la RedT de
-              Alastria.
+              Alastria con fecha del{' '}
+              {moment.unix(timestamp).format('DD/MM/YYYY - HH:mm:ss')}
             </Paragraph>
           </SuccessParagraph>
         </Col>
