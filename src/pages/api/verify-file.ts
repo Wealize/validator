@@ -11,8 +11,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const isHashStored = await blockchainService.isHashStored(fileHash)
 
     if (isHashStored) {
-      const timestamp = await blockchainService.getTimestamp()
-      res.status(200).json({ is_file_stored: isHashStored, timestamp })
+      const { hash, timestamp } = await blockchainService.getTransactionData()
+      res.status(200).json({ is_file_stored: isHashStored, timestamp, hash })
     } else {
       res.status(200).json({ is_file_stored: isHashStored })
     }

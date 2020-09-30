@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-expressions */
 import React from 'react'
 import { useRouter } from 'next/router'
+import { NextPageContext } from 'next'
 import { Button, Col, Row } from 'antd'
 import styled from 'styled-components'
 import moment from 'moment'
@@ -12,6 +13,7 @@ import PrimaryButton from '../components/PrimaryButton'
 const SuccessPage = () => {
   const router = useRouter()
   const timestamp = parseInt(router.query.timestamp as string)
+  const transactionHash = router.query.transactionHash as string
 
   return (
     <div>
@@ -38,7 +40,16 @@ const SuccessPage = () => {
               El proceso ha sido llevado cabo con éxito. <br />
               Tu documento corresponde con una notarización en la RedT de
               Alastria con fecha del{' '}
-              {moment.unix(timestamp).format('DD/MM/YYYY - HH:mm:ss')}
+              {moment.unix(timestamp).format('DD/MM/YYYY - HH:mm:ss')} <br />
+              Si deseas conocer más detalles técnicos acerca de tu documento en
+              blockchain visita el siguiente enlace de{' '}
+              <a
+                href={`https://blkexplorer1.telsius.alastria.io/transaction/${transactionHash}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Alastria Telsius Explorer.
+              </a>
             </Paragraph>
           </SuccessParagraph>
         </Col>
@@ -92,5 +103,16 @@ const BackButtonContainer = styled.div`
     color: ${black};
   }
 `
+
+SuccessPage.getInitialProps = async ({ res }: NextPageContext) => {
+  const isSSR = !!res
+
+  // Disable this page to be access with URL: only client can do it using Router
+  if (isSSR) {
+    res?.writeHead(301, { Location: '/' })
+    res?.end()
+  }
+  return { props: {} }
+}
 
 export default SuccessPage

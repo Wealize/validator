@@ -30,9 +30,14 @@ const FileVerification: NextPage<{}> = () => {
     const formData = await createFormData()
     setIsProcessingRequest(true)
     try {
-      const { is_file_stored, timestamp } = await ApiClient.verifyFile(formData)
+      const { is_file_stored, timestamp, hash } = await ApiClient.verifyFile(
+        formData
+      )
       if (is_file_stored) {
-        router.push(`/success?timestamp=${timestamp}`, '/success')
+        router.push(
+          `/success?timestamp=${timestamp}&transactionHash=${hash}`,
+          '/success'
+        )
       } else {
         router.push('/error')
       }

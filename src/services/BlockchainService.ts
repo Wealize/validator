@@ -28,12 +28,12 @@ class BlockchainService {
     return isStored
   }
 
-  public async getTimestamp() {
-    const { blockHash } = await this.web3Instance.eth.getTransaction(
+  public async getTransactionData() {
+    const { hash, blockHash } = await this.web3Instance.eth.getTransaction(
       process.env.BLOCK_HASH
     )
     const { timestamp } = await this.web3Instance.eth.getBlock(blockHash)
-    return timestamp
+    return { hash, timestamp }
   }
 }
 

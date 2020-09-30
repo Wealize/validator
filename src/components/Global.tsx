@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
-import { black, blackHigh } from '../theme/color'
+import { black, blackHigh, primary } from '../theme/color'
 import media from '../theme/media'
 
 const Global = createGlobalStyle`
@@ -45,6 +45,14 @@ const Global = createGlobalStyle`
       letter-spacing: -0.33px;
       line-height: 19px;
   `}
+  }
+
+  a {
+    color:${primary};
+
+    :hover, :active {
+      color: #1c3bcb
+    }
   }
 `
 
