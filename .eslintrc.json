@@ -23,7 +23,7 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "ignorePatterns": ["*.json"],
+  "ignorePatterns": ["*.json", "__tests__"],
   "plugins": ["@typescript-eslint", "jest", "cypress"],
   "rules": {
     "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1 }],
