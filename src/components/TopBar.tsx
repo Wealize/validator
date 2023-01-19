@@ -6,7 +6,7 @@ import media from '../theme/media'
 const TopBar = () => {
   return (
     <TopBarContainer>
-      <LogoImage src="wealize.svg" />
+      <LogoImage src="izertis.png" />
     </TopBarContainer>
   )
 }

@@ -78,7 +78,7 @@ const FileVerification: NextPage<{}> = () => {
           >
             <Paragraph>
               <IndexParagraph data-cy="first-paragraph">
-                Wealize te permite contrastar un documento en tu poder con un
+                Izertis te permite contrastar un documento en tu poder con un
                 documento previamente notarizado en la RedT de Alastria. <br />
                 Para poder hacer la verificación adjunta tu archivo y haz click
                 en “ENVIAR”.
