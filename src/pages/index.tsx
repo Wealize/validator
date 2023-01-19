@@ -16,13 +16,20 @@ import media from '../theme/media'
 import { DescriptionText, PageTitle } from '../components/atomic_components/Text/variants'
 
 const FileVerification: NextPage<{}> = () => {
-  const [uploadedFile, setUploadedFile] = useState<File>()
+  const [uploadedFile, setUploadedFile] = useState<any>()
   const [fileIsLoaded, setFileIsLoaded] = useState(false)
   const [isProcessingRequest, setIsProcessingRequest] = useState(false)
   const router = useRouter()
 
   const onFileChange = (file: File) => {
-    setUploadedFile(file)
+
+    const fileReader = new FileReader()
+    fileReader.readAsArrayBuffer(file)
+    fileReader.onloadend = (event) => {
+        const buffer = new Uint8Array(event.target?.result as ArrayBuffer)
+        setUploadedFile(buffer)
+        setFileIsLoaded(true)
+    }
     setFileIsLoaded(true)
     return false
   }
@@ -32,7 +39,7 @@ const FileVerification: NextPage<{}> = () => {
     setIsProcessingRequest(true)
     try {
       const { is_file_stored, timestamp, hash } = await ApiClient.verifyFile(
-        formData
+        {file:uploadedFile}
       )
       if (is_file_stored) {
         router.push(
@@ -45,6 +52,8 @@ const FileVerification: NextPage<{}> = () => {
     } catch (error) {
       router.push('/error')
     }
+
+    setIsProcessingRequest(false)
   }
 
   const createFormData = async () => {
