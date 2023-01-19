@@ -149,6 +149,7 @@ const IndexContainer = styled(Layout)`
 const IndexTitle = styled.h1`
   margin-top: 40px;
   margin-bottom: 16px;
+  font-family: Montserrat;
 
   ${media.greaterThan('md')`
     margin-top: 80px;
@@ -162,6 +163,7 @@ const IndexTitle = styled.h1`
 
 const IndexParagraph = styled.p`
   margin-bottom: 64px;
+  font-family:  "Muli", Arial, Helvetica, sans-serif;
 `
 
 const IndexUploadContainer = styled(Upload)`
