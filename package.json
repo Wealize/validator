@@ -6,9 +6,6 @@
   "author": "Wealize",
   "license": "None",
   "private": true,
-  "engines": {
-    "node": "10.24.1"
-  },
   "scripts": {
     "build": "next build",
     "dev": "next",
