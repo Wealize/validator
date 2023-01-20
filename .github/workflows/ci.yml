@@ -5,6 +5,7 @@ on: [push]
 env:
   NODE_ENV: production
   PORT: 3000
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 jobs:
   tests:
     runs-on: ubuntu-latest
