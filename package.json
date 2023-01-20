@@ -7,7 +7,7 @@
   "license": "None",
   "private": true,
   "engines": {
-    "node": "12.16.0"
+    "node": "10.24.1"
   },
   "scripts": {
     "build": "next build",
