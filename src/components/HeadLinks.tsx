@@ -12,7 +12,8 @@ const HeadLinks = () => {
         href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
         rel="stylesheet"
       />
-      
+      <link href="https://fonts.adobe.com/fonts/muli" rel="stylesheet" />
+  
     </Head>
   )
 }
