@@ -13,6 +13,7 @@ import PrimaryButton from '../components/PrimaryButton'
 import UploadButton from '../components/UploadButton'
 import { backgroundGray, primary, black } from '../theme/color'
 import media from '../theme/media'
+import { DescriptionText, PageTitle } from '../components/atomic_components/Text/variants'
 
 const FileVerification: NextPage<{}> = () => {
   const [uploadedFile, setUploadedFile] = useState<File>()
@@ -78,7 +79,7 @@ const FileVerification: NextPage<{}> = () => {
           >
             <Paragraph>
               <IndexParagraph data-cy="first-paragraph">
-                Wealize te permite contrastar un documento en tu poder con un
+                Izertis te permite contrastar un documento en tu poder con un
                 documento previamente notarizado en la RedT de Alastria. <br />
                 Para poder hacer la verificación adjunta tu archivo y haz click
                 en “ENVIAR”.
@@ -146,7 +147,7 @@ const IndexContainer = styled(Layout)`
   height: 100%;
 `
 
-const IndexTitle = styled.h1`
+const IndexTitle = styled(PageTitle)`
   margin-top: 40px;
   margin-bottom: 16px;
 
@@ -160,7 +161,7 @@ const IndexTitle = styled.h1`
   `}
 `
 
-const IndexParagraph = styled.p`
+const IndexParagraph = styled(DescriptionText)`
   margin-bottom: 64px;
 `
 

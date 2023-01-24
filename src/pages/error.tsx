@@ -7,10 +7,11 @@ import styled from 'styled-components'
 import { primary, black } from '../theme/color'
 import PrimaryButton from '../components/PrimaryButton'
 import Paragraph from '../components/Paragraph'
+import { Title } from '../components/atomic_components/Text/variants'
 
 const ErrorPage = () => {
   const router = useRouter()
-
+  
   return (
     <div>
       <Row>
@@ -64,7 +65,7 @@ const ErrorPage = () => {
   )
 }
 
-const ErrorTitle = styled.h2`
+const ErrorTitle = styled(Title)`
   margin-top: 100px;
   margin-bottom: 30px;
   line-height: 1.25;

@@ -1,5 +1,6 @@
 name: Danger
-
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 on: [pull_request]
 
 jobs:
@@ -12,7 +13,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
-          node-version: '10.x'
+          node-version: '14.x'
 
       - name: Install dependencies
         run: yarn install --dev

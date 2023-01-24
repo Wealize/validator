@@ -9,6 +9,7 @@ import moment from 'moment'
 import { primary, black } from '../theme/color'
 import Paragraph from '../components/Paragraph'
 import PrimaryButton from '../components/PrimaryButton'
+import { Title } from '../components/atomic_components/Text/variants'
 
 const SuccessPage = () => {
   const router = useRouter()
@@ -81,7 +82,7 @@ const SuccessPage = () => {
   )
 }
 
-const SuccessTitle = styled.h2`
+const SuccessTitle = styled(Title)`
   margin-top: 100px;
   margin-bottom: 30px;
   line-height: 1.25;

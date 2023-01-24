@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
 import { black } from '../theme/color'
+import { DescriptionText } from './atomic_components/Text/variants'
 
-const Paragraph = styled.div`
+const Paragraph = styled(DescriptionText)`
   color: ${black};
-  font-family: 'Open Sans', sans-serif;
   font-weight: normal;
   font-size: 16px;
   letter-spacing: 0.44px;
