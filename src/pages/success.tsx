@@ -39,9 +39,10 @@ const SuccessPage = () => {
           <SuccessParagraph data-cy="first-paragraph">
             <Paragraph>
               El proceso ha sido llevado cabo con éxito. <br />
-              Tu documento corresponde con una notarización en la RedT de
-              Alastria con fecha del{' '}
-              {moment.unix(timestamp).format('DD/MM/YYYY - HH:mm:ss')} <br />
+              Tu documento corresponde con una notarización en la RedT de Alastria
+              {/*  con fecha del{' '}
+              {moment.unix(timestamp).format('DD/MM/YYYY - HH:mm:ss')}  */}
+              <br />
               Si deseas conocer más detalles técnicos acerca de tu documento en
               blockchain visita el siguiente enlace de{' '}
               <a

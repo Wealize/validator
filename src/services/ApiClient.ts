@@ -1,15 +1,16 @@
+const axios = require('axios')
 export default class ApiClient {
-  static async verifyFile(data: any) {
-    const url = 'https://certificatio-feat-uuidf-trhwrd.herokuapp.com/api/certifications/verify'
-    const response = await fetch(url, {
-      method: 'POST',
-      body: data
-    })
-
-    if (response.status >= 400) {
-      throw new Error()
+  static async verifyFile(formData: FormData) {
+    var requestOptions = {
+      method: 'PUT',
+      body: formData
+      // redirect: 'follow'
     }
 
-    return response.json()
+    const response = await fetch(
+      'https://certificatio-feat-uuidf-trhwrd.herokuapp.com/api/certifications/verify',
+      requestOptions
+    ).then((response) => response.text())
+    return JSON.parse(response)
   }
 }

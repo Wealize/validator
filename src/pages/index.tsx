@@ -25,13 +25,15 @@ const FileVerification: NextPage<{}> = () => {
   const router = useRouter()
 
   const onFileChange = (file: File) => {
-    const fileReader = new FileReader()
-    fileReader.readAsArrayBuffer(file)
-    fileReader.onloadend = (event) => {
-      const buffer = new Uint8Array(event.target?.result as ArrayBuffer)
-      setUploadedFile(buffer)
-      setFileIsLoaded(true)
-    }
+    setUploadedFile(file)
+    // setFileIsLoaded(true)
+    // const fileReader = new FileReader()
+    // fileReader.readAsArrayBuffer(file)
+    // fileReader.onloadend = (event) => {
+    //   const buffer = new Uint8Array(event.target?.result as ArrayBuffer)
+    //   setUploadedFile(buffer)
+    //   setFileIsLoaded(true)
+    // }
     setFileIsLoaded(true)
     return false
   }
@@ -40,19 +42,17 @@ const FileVerification: NextPage<{}> = () => {
     const formData = await createFormData()
     setIsProcessingRequest(true)
     try {
-      const response = await ApiClient.verifyFile(formData)
-      console.log("🚀 ~ file: index.tsx:46 ~ uploadFile ~ response", response)
-      const { is_file_stored, timestamp, hash } = response;
-      if (is_file_stored) {
+      const { error, message, hash, url }:any = await ApiClient.verifyFile(formData)
+      if (message=="OK") {
         router.push(
-          `/success?timestamp=${timestamp}&transactionHash=${hash}`,
+          `/success?timestamp=${url}&transactionHash=${hash}`,
           '/success'
         )
       } else {
-        router.push('/error')
+        router.push('/error?error='+error)
       }
     } catch (error) {
-      router.push('/error')
+      router.push('/error?error='+error)
     }
 
     setIsProcessingRequest(false)
@@ -60,7 +60,7 @@ const FileVerification: NextPage<{}> = () => {
 
   const createFormData = async () => {
     const formData = new FormData()
-    formData.append('file', uploadedFile)
+    formData.append('file', uploadedFile, uploadedFile.name)
     return formData
   }
 

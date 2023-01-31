@@ -11,6 +11,7 @@ import { Title } from '../components/atomic_components/Text/variants'
 
 const ErrorPage = () => {
   const router = useRouter()
+  const error = router.query.error as string
   
   return (
     <div>
