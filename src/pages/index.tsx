@@ -13,8 +13,10 @@ import PrimaryButton from '../components/PrimaryButton'
 import UploadButton from '../components/UploadButton'
 import { backgroundGray, primary, black } from '../theme/color'
 import media from '../theme/media'
-import { DescriptionText, PageTitle } from '../components/atomic_components/Text/variants'
-import VerificationService from '../services/VerificationService'
+import {
+  DescriptionText,
+  PageTitle
+} from '../components/atomic_components/Text/variants'
 
 const FileVerification: NextPage<{}> = () => {
   const [uploadedFile, setUploadedFile] = useState<any>()
@@ -23,14 +25,12 @@ const FileVerification: NextPage<{}> = () => {
   const router = useRouter()
 
   const onFileChange = (file: File) => {
-
     const fileReader = new FileReader()
     fileReader.readAsArrayBuffer(file)
     fileReader.onloadend = (event) => {
-        const buffer = new Uint8Array(event.target?.result as ArrayBuffer)
-        console.log("🚀 ~ file: index.tsx:30 ~ onFileChange ~ buffer", buffer)
-        setUploadedFile(buffer)
-        setFileIsLoaded(true)
+      const buffer = new Uint8Array(event.target?.result as ArrayBuffer)
+      setUploadedFile(buffer)
+      setFileIsLoaded(true)
     }
     setFileIsLoaded(true)
     return false
@@ -38,25 +38,22 @@ const FileVerification: NextPage<{}> = () => {
 
   const uploadFile = async () => {
     const formData = await createFormData()
-    console.log("🚀 ~ file: index.tsx:39 ~ uploadFile ~ formData", formData)
     setIsProcessingRequest(true)
-    const verification = await VerificationService.verifyFile(uploadedFile)
-    console.log("🚀 ~ file: index.tsx:44 ~ uploadFile ~ verification", verification)
-    // try {
-    //   const { is_file_stored, timestamp, hash } = await ApiClient.verifyFile(
-    //     {file:uploadedFile}
-    //   )
-    //   if (is_file_stored) {
-    //     router.push(
-    //       `/success?timestamp=${timestamp}&transactionHash=${hash}`,
-    //       '/success'
-    //     )
-    //   } else {
-    //     router.push('/error')
-    //   }
-    // } catch (error) {
-    //   router.push('/error')
-    // }
+    try {
+      const response = await ApiClient.verifyFile(formData)
+      console.log("🚀 ~ file: index.tsx:46 ~ uploadFile ~ response", response)
+      const { is_file_stored, timestamp, hash } = response;
+      if (is_file_stored) {
+        router.push(
+          `/success?timestamp=${timestamp}&transactionHash=${hash}`,
+          '/success'
+        )
+      } else {
+        router.push('/error')
+      }
+    } catch (error) {
+      router.push('/error')
+    }
 
     setIsProcessingRequest(false)
   }
