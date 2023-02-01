@@ -8,11 +8,11 @@ import { primary, black } from '../theme/color'
 import PrimaryButton from '../components/PrimaryButton'
 import Paragraph from '../components/Paragraph'
 import { Title } from '../components/atomic_components/Text/variants'
+import ApiClient from '../services/ApiClient'
 
 const ErrorPage = () => {
   const router = useRouter()
   const error = router.query.error as string
-  
   return (
     <div>
       <Row>
@@ -32,10 +32,7 @@ const ErrorPage = () => {
           lg={{ span: 10, push: 7 }}
         >
           <ErrorParagraph data-cy="first-paragraph">
-            <Paragraph>
-              No encontramos este documento en la RedT de Alastria. <br />
-              Por favor, confirma tu fichero y vuelve a intentarlo.
-            </Paragraph>
+            <Paragraph>{ApiClient.getErrorDescription(error)}</Paragraph>
           </ErrorParagraph>
         </Col>
       </Row>
@@ -53,7 +50,7 @@ const ErrorPage = () => {
                 data-cy="send-button"
                 type="primary"
                 onClick={() => {
-                  router.push('/')
+                  router.back()
                 }}
               >
                 Volver
