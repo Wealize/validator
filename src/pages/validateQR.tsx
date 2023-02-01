@@ -40,11 +40,10 @@ const FileVerification: NextPage<{}> = () => {
             method: 'GET',
             responseType: 'blob' // important
           })
-          const file = new File([responseBlobIpfsFile.data], fileName)
-          const formData = new FormData()
-          formData.append('file', file)
+       
           try {
-            const responseVerifyFile: any = await ApiClient.verifyFile(formData)
+            const file = new File([responseBlobIpfsFile.data], fileName)
+            const responseVerifyFile: any = await ApiClient.verifyFile(file)
             const { error, message, hash, url }: any = responseVerifyFile
             if (message == 'OK') {
               router.push(

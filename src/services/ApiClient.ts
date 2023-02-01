@@ -11,7 +11,9 @@ export default class ApiClient {
     ERR_NETWORK: 'ERR_NETWORK',
     NOT_FOUND_UUID: 'uuid.NOT_FOUND_UUID'
   }
-  static async verifyFile(formData: FormData) {
+  static async verifyFile(file: File) {
+    const formData = new FormData()
+    formData.append('file', file, file.name)
     var requestOptions = {
       method: 'PUT',
       body: formData

@@ -31,10 +31,9 @@ const FileVerification: NextPage<{}> = () => {
   }
 
   const uploadFile = async () => {
-    const formData = await createFormData()
     setIsProcessingRequest(true)
     try {
-      const { error, message, hash, url }:any = await ApiClient.verifyFile(formData)
+      const { error, message, hash, url }:any = await ApiClient.verifyFile(uploadedFile)
       if (message=="OK") {
         router.push(
           `/success?timestamp=${url}&transactionHash=${hash}`,
@@ -47,13 +46,6 @@ const FileVerification: NextPage<{}> = () => {
       router.push('/error?error='+error)
     }
 
-    setIsProcessingRequest(false)
-  }
-
-  const createFormData = async () => {
-    const formData = new FormData()
-    formData.append('file', uploadedFile, uploadedFile.name)
-    return formData
   }
 
   const renderLoadingView = () => {
