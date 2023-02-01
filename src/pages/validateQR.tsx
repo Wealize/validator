@@ -22,35 +22,30 @@ import axios from 'axios'
 const FileVerification: NextPage<{}> = () => {
   const [isProcessingRequest, setIsProcessingRequest] = useState(false)
   const router = useRouter()
-  const qr = router.query.qr as string
-  const sendIdentifier = async (qr) => {
+  const uuid = router.query.qr as string
+  const sendIdentifier = async (uuid) => {
     let ipfsURL
     try {
-      if (qr) {
+      if (uuid) {
         setIsProcessingRequest(true)
-        const response: any = await ApiClient.getIPSFFromUuid(qr)
-        // const response: any = {
-        //   status: undefined,
-        //   message: 'OK',
-        //   ipfsURL:
-        //     'https://gateway.pinata.cloud/ipfs/QmS889DF9HtAfKvMeA17Rtdn5pEMByH2TSgdZdy1dm4jLP'
-        // }
+        const response: any = await ApiClient.getIPSFFromUuid(uuid)
         const ipfsStatus = response?.status
         const ipfsError = response?.error
         const ipfsMessage = response?.message
         ipfsURL = response?.ipfsURL
         if (ipfsStatus != 404 && ipfsMessage === 'OK') {
+          const fileName = `${uuid}.pdf`;
           const responseBlobIpfsFile = await axios({
             url: ipfsURL,
             method: 'GET',
             responseType: 'blob' // important
           })
-          const file = new File([responseBlobIpfsFile.data], 'file.pdf')
+          const file = new File([responseBlobIpfsFile.data], fileName)
           const formData = new FormData()
           formData.append('file', file)
           try {
-            const { error, message, hash, url }: any =
-              await ApiClient.verifyFile(formData)
+            const responseVerifyFile: any = await ApiClient.verifyFile(formData)
+            const { error, message, hash, url }: any = responseVerifyFile
             if (message == 'OK') {
               router.push(
                 `/success?timestamp=${url}&transactionHash=${hash}`,
@@ -61,6 +56,7 @@ const FileVerification: NextPage<{}> = () => {
               router.push(`/error?error=${errorCode}`)
             }
           } catch (error) {
+            console.error("🚀 ~ file: validateQR.tsx:71 ~ sendIdentifier ~ error", error)
             const errorCode = ApiClient.getErrorCode(error)
             router.push(`/error?error=${errorCode}`)
           }
@@ -69,11 +65,10 @@ const FileVerification: NextPage<{}> = () => {
         }
       }
     } catch (error) {
+      console.error("🚀 ~ file: validateQR.tsx:79 ~ sendIdentifier ~ error", error)
       const errorCode = ApiClient.getErrorCode(error)
       router.push(`/error?error=${errorCode}`)
-    } finally {
-      setIsProcessingRequest(false)
-    }
+    } 
   }
 
   const renderLoadingView = () => {
@@ -125,7 +120,7 @@ const FileVerification: NextPage<{}> = () => {
                   size="large"
                   data-cy="send-button"
                   type="primary"
-                  onClick={() => sendIdentifier(qr)}
+                  onClick={() => sendIdentifier(uuid)}
                 >
                   Enviar
                 </Button>

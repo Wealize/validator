@@ -31,28 +31,30 @@ export default class ApiClient {
   static async getIPSFFromUuid(uuid) {
     const url = `${ApiClient.API_NODE}${ApiClient.API_NAMES.UUID}/${uuid}`
     return axios.get(url).then(function (response) {
-      return JSON.stringify(response.data)
+      return (response.data)
     })
   }
 
   static getErrorCode(error: any) {
+    let errorCode = ''
     if (typeof error === 'object' && error?.code) {
       const code = error?.code
       const url = error?.config?.url
       if (error.code === ApiClient.API_ERRORS.ERR_BAD_REQUEST) {
         if (url?.includes(ApiClient.API_NAMES.UUID)) {
-          return `${code}_UUID`
+          errorCode = `${code}_UUID`
         }
       } else if (code === ApiClient.API_ERRORS.ERR_NETWORK) {
-        return `${code}_DOWNLOAD_IPFS`
+        errorCode = `${code}_DOWNLOAD_IPFS`
       }
     } else if (typeof error === 'string') {
       if (error === ApiClient.API_ERRORS.NOT_FOUND_UUID) {
-        return error
+        errorCode = error
       }
     } else {
-      return error.toString()
+      errorCode= error.toString()
     }
+    return errorCode;
   }
 
   static getErrorDescription = (

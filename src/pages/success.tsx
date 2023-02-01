@@ -70,7 +70,7 @@ const SuccessPage = () => {
                 data-cy="send-button"
                 type="primary"
                 onClick={() => {
-                  router.push('/')
+                  router.back()
                 }}
               >
                 Verificar otro fichero

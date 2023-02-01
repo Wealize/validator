@@ -26,14 +26,6 @@ const FileVerification: NextPage<{}> = () => {
 
   const onFileChange = (file: File) => {
     setUploadedFile(file)
-    // setFileIsLoaded(true)
-    // const fileReader = new FileReader()
-    // fileReader.readAsArrayBuffer(file)
-    // fileReader.onloadend = (event) => {
-    //   const buffer = new Uint8Array(event.target?.result as ArrayBuffer)
-    //   setUploadedFile(buffer)
-    //   setFileIsLoaded(true)
-    // }
     setFileIsLoaded(true)
     return false
   }
