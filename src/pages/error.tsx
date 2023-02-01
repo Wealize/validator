@@ -13,6 +13,18 @@ import ApiClient from '../services/ApiClient'
 const ErrorPage = () => {
   const router = useRouter()
   const error = router.query.error as string
+
+  const formatTextWithLineBreaks = (text: string) => {
+    const phrase = text.split('\n')
+    return phrase.map((line, index) => {
+      return (
+        <>
+          {line}
+          {index != phrase.length - 1 && <br />}
+        </>
+      )
+    })
+  }
   return (
     <div>
       <Row>
@@ -32,7 +44,9 @@ const ErrorPage = () => {
           lg={{ span: 10, push: 7 }}
         >
           <ErrorParagraph data-cy="first-paragraph">
-            <Paragraph>{ApiClient.getErrorDescription(error)}</Paragraph>
+            <Paragraph>
+              {ApiClient.getErrorDescription(error, formatTextWithLineBreaks)}
+            </Paragraph>
           </ErrorParagraph>
         </Col>
       </Row>

@@ -50,42 +50,49 @@ export default class ApiClient {
       if (error === ApiClient.API_ERRORS.NOT_FOUND_UUID) {
         return error
       }
-    }
-    else{
-      return error.toString();
+    } else {
+      return error.toString()
     }
   }
 
-  static getErrorDescription = (error) => {
-    if (!error) return ''
+  static getErrorDescription = (
+    error,
+    formatFunction?: (errorMessage: string, errorCode?: string) => any
+  ) => {
+    let errorMessage = ''
+    if (!error) {
+      errorMessage = ''
+      return
+    }
     if (error.includes(ApiClient.API_ERRORS.ERR_NETWORK)) {
       if (error.includes('DOWNLOAD_IPFS')) {
-        return `
+        errorMessage = `
           Estamos teniendo problemas para obtener el documento para verificar
           en la RedT de Alastria.
-          Por favor, vuelve a intentarlo mas tarde.
+          Por favor, vuelve a intentarlo más tarde.
         `
       } else {
-        return `
+        errorMessage = `
           Estamos teniendo problemas para verificar en la RedT de Alastria.
-          Por favor, vuelve a intentarlo mas tarde.
+          Por favor, vuelve a intentarlo más tarde.
         `
       }
     } else if (error.includes(ApiClient.API_ERRORS.ERR_BAD_REQUEST)) {
-      return `
+      errorMessage = `
         El identificador o documento introducido no se encuentra en la RedT de Alastria.
         Por favor, confirma tu identificador y vuelve a intentarlo.
       `
     } else if (error.includes(ApiClient.API_ERRORS.NOT_FOUND_UUID)) {
-      return `
+      errorMessage = `
       El identificador introducido no se encuentra en la RedT de Alastria.
       Por favor, confirma tu identificador y vuelve a intentarlo.
       `
     } else {
-      return `
+      errorMessage = `
         No encontramos este documento en la RedT de Alastria.
         Por favor, confirma tu fichero y vuelve a intentarlo.
       `
     }
+    return formatFunction ? formatFunction(errorMessage, error) : errorMessage
   }
 }
