@@ -9,7 +9,7 @@ import styled from 'styled-components'
 import ApiClient from '../services/ApiClient'
 import Loader from '../components/Loader'
 import Paragraph from '../components/Paragraph'
-import PrimaryButton from '../components/PrimaryButton'
+import { PrimaryButton } from '../components/PrimaryButton'
 import UploadButton from '../components/UploadButton'
 import { backgroundGray, primary, black } from '../theme/color'
 import media from '../theme/media'
@@ -33,19 +33,20 @@ const FileVerification: NextPage<{}> = () => {
   const uploadFile = async () => {
     setIsProcessingRequest(true)
     try {
-      const { error, message, hash, url }:any = await ApiClient.verifyFile(uploadedFile)
-      if (message=="OK") {
+      const { error, message, hash, url }: any = await ApiClient.verifyFile(
+        uploadedFile
+      )
+      if (message == 'OK') {
         router.push(
           `/success?timestamp=${url}&transactionHash=${hash}`,
           '/success'
         )
       } else {
-        router.push('/error?error='+error)
+        router.push('/error?error=' + error)
       }
     } catch (error) {
-      router.push('/error?error='+error)
+      router.push('/error?error=' + error)
     }
-
   }
 
   const renderLoadingView = () => {

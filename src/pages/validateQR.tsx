@@ -9,65 +9,97 @@ import styled from 'styled-components'
 import ApiClient from '../services/ApiClient'
 import Loader from '../components/Loader'
 import Paragraph from '../components/Paragraph'
-import PrimaryButton from '../components/PrimaryButton'
-import UploadButton from '../components/UploadButton'
 import { backgroundGray, primary, black } from '../theme/color'
 import media from '../theme/media'
 import {
   DescriptionText,
   PageTitle
 } from '../components/atomic_components/Text/variants'
-import axios from 'axios'
+import {
+  InversePrimaryButton,
+  PrimaryButton
+} from '../components/PrimaryButton'
+import { NotificationContainer, NotificationManager } from 'react-notifications'
+import 'react-notifications/lib/notifications.css'
 
 const ValidateQR: NextPage<{}> = () => {
+  const [uploadedFile, setUploadedFile] = useState<File>()
   const [isProcessingRequest, setIsProcessingRequest] = useState(false)
   const router = useRouter()
   const uuid = router.query.id as string
-  const sendIdentifier = async (uuid) => {
-    let ipfsURL
+  useEffect(() => {
+    getFileFromUuid(uuid)
+  }, [uuid])
+
+  const getFileFromUuid = async (uuid: string, isDownload?: boolean) => {
     try {
-      if (uuid) {
-        setIsProcessingRequest(true)
+      let ipfsURL
+      if (uploadedFile) {
+        if (isDownload) {
+          const fileName = `${uuid || 'file'}.pdf`
+          const link = document.createElement('a')
+          link.href = window.URL.createObjectURL(uploadedFile)
+          link.download = fileName
+          link.click()
+        }
+        return { file: uploadedFile }
+      } else if (uuid) {
         const response: any = await ApiClient.getIPSFFromUuid(uuid)
         const ipfsStatus = response?.status
         const ipfsError = response?.error
         const ipfsMessage = response?.message
         ipfsURL = response?.ipfsURL
         if (ipfsStatus != 404 && ipfsMessage === 'OK') {
-          const fileName = `${uuid}.pdf`;
-          const responseBlobIpfsFile = await axios({
-            url: ipfsURL,
-            method: 'GET',
-            responseType: 'blob' // important
-          })
-       
-          try {
-            const file = new File([responseBlobIpfsFile.data], fileName)
-            const responseVerifyFile: any = await ApiClient.verifyFile(file)
-            const { error, message, hash, url }: any = responseVerifyFile
-            if (message == 'OK') {
-              router.push(
-                `/success?timestamp=${url}&transactionHash=${hash}`,
-                '/success'
-              )
-            } else {
-              const errorCode = ApiClient.getErrorCode(error)
-              router.push(`/error?error=${errorCode}`)
-            }
-          } catch (error) {
-            console.error("🚀 ~ file: validateQR.tsx:71 ~ sendIdentifier ~ error", error)
-            const errorCode = ApiClient.getErrorCode(error)
-            router.push(`/error?error=${errorCode}`)
+          const file: any = await ApiClient.generateFile(
+            ipfsURL,
+            uuid,
+            isDownload
+          )
+          setUploadedFile(file)
+        } else return { file: null, ipfsError }
+      }
+    } catch (error) {
+      if (isDownload) {
+        NotificationManager.error(
+          'Error, el identificador introducido no tiene asociado ningún documento',
+          '',
+          5000,
+          () => {
+            alert('callback')
           }
-        } else if (ipfsError === ApiClient.API_ERRORS.NOT_FOUND_UUID) {
-          router.push(`/error?error=${ipfsError}`)
+        )
+      } else {
+        throw error
+      }
+    }
+  }
+
+  const sendIdentifier = async (uuid) => {
+    try {
+      if (uuid) {
+        setIsProcessingRequest(true)
+        const { file, ipfsError } = await getFileFromUuid(uuid)
+        if (ipfsError) {
+          const errorCode = ApiClient.getErrorCode(ipfsError)
+          router.push(`/error?error=${errorCode}`)
+          return
+        }
+        const responseVerifyFile: any = await ApiClient.verifyFile(file)
+        const { error, message, hash, url }: any = responseVerifyFile
+        if (message == 'OK') {
+          router.push(
+            `/success?uuid=${uuid}&transactionHash=${hash}`,
+            '/success'
+          )
+        } else {
+          const errorCode = ApiClient.getErrorCode(error)
+          router.push(`/error?error=${errorCode}`)
         }
       }
     } catch (error) {
-      console.error("🚀 ~ file: validateQR.tsx:79 ~ sendIdentifier ~ error", error)
       const errorCode = ApiClient.getErrorCode(error)
       router.push(`/error?error=${errorCode}`)
-    } 
+    }
   }
 
   const renderLoadingView = () => {
@@ -121,12 +153,35 @@ const ValidateQR: NextPage<{}> = () => {
                   type="primary"
                   onClick={() => sendIdentifier(uuid)}
                 >
-                  Enviar
+                  Verificar
                 </Button>
               </PrimaryButton>
             </IndexSendContainer>
           </Col>
         </Row>
+        <Row style={{ marginTop: 20 }}>
+          <Col
+            xs={{ span: 10, push: 2 }}
+            md={{ span: 5, push: 2 }}
+            lg={{ span: 4, push: 2 }}
+            xl={{ span: 3, push: 3 }}
+            xxl={{ span: 2, push: 3 }}
+          >
+            <IndexSendContainer>
+              <InversePrimaryButton>
+                <Button
+                  size="large"
+                  data-cy="send-button"
+                  type="primary"
+                  onClick={() => getFileFromUuid(uuid, true)}
+                >
+                  Descargar
+                </Button>
+              </InversePrimaryButton>
+            </IndexSendContainer>
+          </Col>
+        </Row>
+        <NotificationContainer />
       </IndexContainer>
     )
   }

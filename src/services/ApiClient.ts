@@ -33,8 +33,25 @@ export default class ApiClient {
   static async getIPSFFromUuid(uuid) {
     const url = `${ApiClient.API_NODE}${ApiClient.API_NAMES.UUID}/${uuid}`
     return axios.get(url).then(function (response) {
-      return (response.data)
+      return response.data
     })
+  }
+
+  static async generateFile(ipfsURL, uuid, isDownload?: boolean) {
+    const fileName = `${uuid}.pdf`
+    const responseBlobIpfsFile = await axios({
+      url: ipfsURL,
+      method: 'GET',
+      responseType: 'blob' // important
+    })
+    const file = new File([responseBlobIpfsFile.data], fileName)
+    if (isDownload) {
+      const link = document.createElement('a')
+      link.href = window.URL.createObjectURL(responseBlobIpfsFile.data)
+      link.download = fileName
+      link.click()
+    }
+    return file
   }
 
   static getErrorCode(error: any) {
@@ -54,9 +71,9 @@ export default class ApiClient {
         errorCode = error
       }
     } else {
-      errorCode= error.toString()
+      errorCode = error.toString()
     }
-    return errorCode;
+    return errorCode
   }
 
   static getErrorDescription = (

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import { primary, white } from '../theme/color'
 
-const PrimaryButton = styled.div`
+export const PrimaryButton = styled.div`
   .ant-btn {
     font-family: 'Open Sans', sans-serif;
     font-weight: normal;
@@ -25,9 +25,36 @@ const PrimaryButton = styled.div`
   button:active,
   button:focus,
   button:hover {
-    background: #1c3bcb;
+    background: #e92120;
     color: ${white};
   }
 `
 
-export default PrimaryButton
+export const InversePrimaryButton = styled.div`
+  .ant-btn {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: normal;
+    font-size: 16px;
+    letter-spacing: 0.44px;
+    line-height: 28px;
+    background-color: ${white};
+    border-color: ${primary};
+    border-radius: 20px !important;
+    color: ${primary} !important;
+  }
+
+  button:disabled {
+    border: 1px solid #cccccc;
+    background: #cccccc;
+    color: ${white};
+    box-shadow: none;
+  }
+
+  button:active,
+  button:focus,
+  button:hover {
+    background: #f2f2f2;
+    color: ${white};
+  }
+`
+
