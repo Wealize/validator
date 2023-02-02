@@ -19,10 +19,10 @@ import {
 } from '../components/atomic_components/Text/variants'
 import axios from 'axios'
 
-const FileVerification: NextPage<{}> = () => {
+const ValidateQR: NextPage<{}> = () => {
   const [isProcessingRequest, setIsProcessingRequest] = useState(false)
   const router = useRouter()
-  const uuid = router.query.qr as string
+  const uuid = router.query.id as string
   const sendIdentifier = async (uuid) => {
     let ipfsURL
     try {
@@ -182,4 +182,4 @@ const IndexSendContainer = styled.div`
   }
 `
 
-export default FileVerification
+export default ValidateQR

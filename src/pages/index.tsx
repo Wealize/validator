@@ -19,7 +19,7 @@ import {
 } from '../components/atomic_components/Text/variants'
 
 const FileVerification: NextPage<{}> = () => {
-  const [uploadedFile, setUploadedFile] = useState<any>()
+  const [uploadedFile, setUploadedFile] = useState<File>()
   const [fileIsLoaded, setFileIsLoaded] = useState(false)
   const [isProcessingRequest, setIsProcessingRequest] = useState(false)
   const router = useRouter()
