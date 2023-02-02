@@ -116,7 +116,7 @@ const ValidateQR: NextPage<{}> = () => {
             xl={{ span: 14, push: 3 }}
           >
             <IndexTitle data-cy="title">
-              Bienvenido/a al servicio de verificación de QR's
+              Te damos la bienvenida al Servicio de Verificación de documentos en blockchain
             </IndexTitle>
           </Col>
         </Row>
@@ -128,10 +128,9 @@ const ValidateQR: NextPage<{}> = () => {
           >
             <Paragraph>
               <IndexParagraph data-cy="first-paragraph">
-                Izertis te permite contrastar un documento en tu poder con un
-                identificador previamente notarizado en la RedT de Alastria.{' '}
-                <br />
-                Para poder hacer la verificación haz click en “ENVIAR”.
+                Izertis te permite contrastar cualquier documento notarizado en blockchain en la Red T de Alastria. 
+                <br/>
+                Para verificar el documento del que has escaneado el QR, debes pulsar el botón VERIFICAR. Si lo deseas, puedes descargarte una copia del mismo en el botón DESCARGAR.
               </IndexParagraph>
             </Paragraph>
           </Col>
