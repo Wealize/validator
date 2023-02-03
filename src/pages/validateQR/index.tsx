@@ -3,24 +3,16 @@ import React, { useEffect, useState } from 'react'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { Button, Upload, Layout, Col, Row } from 'antd'
-import { UploadOutlined } from '@ant-design/icons'
-import styled from 'styled-components'
-
-import ApiClient from '../services/ApiClient'
-import Loader from '../components/Loader'
-import Paragraph from '../components/Paragraph'
-import { backgroundGray, primary, black } from '../theme/color'
-import media from '../theme/media'
-import {
-  DescriptionText,
-  PageTitle
-} from '../components/atomic_components/Text/variants'
+import ApiClient from '../../services/ApiClient'
+import Loader from '../../components/Loader'
+import Paragraph from '../../components/Paragraph'
 import {
   InversePrimaryButton,
   PrimaryButton
-} from '../components/PrimaryButton'
+} from '../../components/PrimaryButton'
 import { NotificationContainer, NotificationManager } from 'react-notifications'
 import 'react-notifications/lib/notifications.css'
+import { IndexContainer, IndexParagraph, IndexSendContainer, IndexTitle } from './style'
 
 const ValidateQR: NextPage<{}> = () => {
   const [uploadedFile, setUploadedFile] = useState<File>()
@@ -31,7 +23,6 @@ const ValidateQR: NextPage<{}> = () => {
     try {
       getFileFromUuid(uuid)
     } catch (error) {
-      // console.log('error', error)
     }
   }, [uuid])
 
@@ -197,51 +188,5 @@ const ValidateQR: NextPage<{}> = () => {
   return isProcessingRequest ? renderLoadingView() : renderUploadFileView()
 }
 
-const IndexContainer = styled(Layout)`
-  background-color: ${backgroundGray};
-  height: 100%;
-`
-
-const IndexTitle = styled(PageTitle)`
-  margin-top: 40px;
-  margin-bottom: 16px;
-
-  ${media.greaterThan('md')`
-    margin-top: 80px;
-  `}
-
-  ${media.greaterThan('lg')`
-    margin-top: 104px;
-    margin-bottom: 36px;
-  `}
-`
-
-const IndexParagraph = styled(DescriptionText)`
-  margin-bottom: 64px;
-`
-
-const IndexUploadContainer = styled(Upload)`
-  width: 100%;
-
-  .ant-upload {
-    width: 100%;
-    margin-bottom: 33px;
-  }
-  .ant-btn {
-    width: 100%;
-  }
-  .ant-upload-list {
-    display: none;
-  }
-`
-
-const IndexSendContainer = styled.div`
-  width: 100%;
-
-  .ant-btn {
-    color: ${black};
-    width: 100%;
-  }
-`
 
 export default ValidateQR
