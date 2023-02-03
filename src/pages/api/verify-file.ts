@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import BlockchainService from '../../services/BlockchainService'
-import { validateRequest, getFileHash } from '../../utils/ApiUtils'
+
 const verify = async (bytes: Buffer) => {
 }
 
