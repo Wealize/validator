@@ -4,9 +4,8 @@ import { DescriptionText, PageTitle } from "../../components/atomic_components/T
 import { backgroundGray, black } from "../../theme/color"
 import media from '../../theme/media'
 
-export default()=>{
-    return <></>
-}
+
+
 
 export const IndexContainer = styled(Layout)`
   background-color: ${backgroundGray};
