@@ -5,8 +5,6 @@ import { backgroundGray, black } from "../../theme/color"
 import media from '../../theme/media'
 
 
-
-
 export const IndexContainer = styled(Layout)`
   background-color: ${backgroundGray};
   height: 100%;
@@ -53,3 +51,11 @@ export const IndexSendContainer = styled.div`
     width: 100%;
   }
 `
+
+export default {
+  IndexContainer,
+  IndexTitle,
+  IndexParagraph,
+  IndexUploadContainer,
+  IndexSendContainer
+};
