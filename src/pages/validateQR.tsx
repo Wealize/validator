@@ -28,7 +28,11 @@ const ValidateQR: NextPage<{}> = () => {
   const router = useRouter()
   const uuid = router.query.id as string
   useEffect(() => {
-    getFileFromUuid(uuid)
+    try {
+      getFileFromUuid(uuid)
+    } catch (error) {
+      // console.log('error', error)
+    }
   }, [uuid])
 
   const getFileFromUuid = async (uuid: string, isDownload?: boolean) => {
@@ -56,6 +60,7 @@ const ValidateQR: NextPage<{}> = () => {
             isDownload
           )
           setUploadedFile(file)
+          return { file }
         } else return { file: null, ipfsError }
       }
     } catch (error) {
@@ -116,7 +121,8 @@ const ValidateQR: NextPage<{}> = () => {
             xl={{ span: 14, push: 3 }}
           >
             <IndexTitle data-cy="title">
-              Te damos la bienvenida al Servicio de Verificación de documentos en blockchain
+              Te damos la bienvenida al Servicio de Verificación de documentos
+              en blockchain
             </IndexTitle>
           </Col>
         </Row>
@@ -128,9 +134,12 @@ const ValidateQR: NextPage<{}> = () => {
           >
             <Paragraph>
               <IndexParagraph data-cy="first-paragraph">
-                Izertis te permite contrastar cualquier documento notarizado en blockchain en la Red T de Alastria. 
-                <br/>
-                Para verificar el documento del que has escaneado el QR, debes pulsar el botón VERIFICAR. Si lo deseas, puedes descargarte una copia del mismo en el botón DESCARGAR.
+                Izertis te permite contrastar cualquier documento notarizado en
+                blockchain en la Red T de Alastria.
+                <br />
+                Para verificar el documento del que has escaneado el QR, debes
+                pulsar el botón VERIFICAR. Si lo deseas, puedes descargarte una
+                copia del mismo en el botón DESCARGAR.
               </IndexParagraph>
             </Paragraph>
           </Col>
@@ -230,7 +239,6 @@ const IndexSendContainer = styled.div`
   width: 100%;
 
   .ant-btn {
-    background-color: ${primary};
     color: ${black};
     width: 100%;
   }

@@ -24,10 +24,7 @@ export default class ApiClient {
       `${ApiClient.API_NODE}${ApiClient.API_NAMES.VERIFY}`,
       requestOptions
     ).then((response) => response.text())
-    console.log(
-      '🚀 ~ file: ApiClient.ts:14 ~ ApiClient ~ verifyFile ~ response',
-      response
-    )
+
     return JSON.parse(response)
   }
   static async getIPSFFromUuid(uuid) {
@@ -69,6 +66,8 @@ export default class ApiClient {
     } else if (typeof error === 'string') {
       if (error === ApiClient.API_ERRORS.NOT_FOUND_UUID) {
         errorCode = error
+      } else {
+        errorCode = error
       }
     } else {
       errorCode = error.toString()
@@ -82,7 +81,10 @@ export default class ApiClient {
   ) => {
     let errorMessage = ''
     if (!error) {
-      errorMessage = ''
+      errorMessage = `
+      No encontramos este documento en la RedT de Alastria.
+      Por favor, confirma tu fichero y vuelve a intentarlo.
+    `
       return
     }
     if (error.includes(ApiClient.API_ERRORS.ERR_NETWORK)) {
