@@ -12,7 +12,7 @@ import {
 } from '../../components/PrimaryButton'
 import { NotificationContainer, NotificationManager } from 'react-notifications'
 import 'react-notifications/lib/notifications.css'
-import { IndexContainer, IndexParagraph, IndexSendContainer, IndexTitle } from './style'
+import ValidateQrStyles from './style'
 
 const ValidateQR: NextPage<{}> = () => {
   const [uploadedFile, setUploadedFile] = useState<File>()
@@ -104,17 +104,17 @@ const ValidateQR: NextPage<{}> = () => {
 
   const renderUploadFileView = () => {
     return (
-      <IndexContainer>
+      <ValidateQrStyles.IndexContainer>
         <Row>
           <Col
             xs={{ span: 20, push: 2 }}
             lg={{ span: 14, push: 2 }}
             xl={{ span: 14, push: 3 }}
           >
-            <IndexTitle data-cy="title">
+            <ValidateQrStyles.IndexTitle data-cy="title">
               Te damos la bienvenida al Servicio de Verificación de documentos
               en blockchain
-            </IndexTitle>
+            </ValidateQrStyles.IndexTitle>
           </Col>
         </Row>
         <Row>
@@ -124,14 +124,14 @@ const ValidateQR: NextPage<{}> = () => {
             xl={{ span: 10, push: 3 }}
           >
             <Paragraph>
-              <IndexParagraph data-cy="first-paragraph">
+              <ValidateQrStyles.IndexParagraph data-cy="first-paragraph">
                 Izertis te permite contrastar cualquier documento notarizado en
                 blockchain en la Red T de Alastria.
                 <br />
                 Para verificar el documento del que has escaneado el QR, debes
                 pulsar el botón VERIFICAR. Si lo deseas, puedes descargarte una
                 copia del mismo en el botón DESCARGAR.
-              </IndexParagraph>
+              </ValidateQrStyles.IndexParagraph>
             </Paragraph>
           </Col>
         </Row>
@@ -144,7 +144,7 @@ const ValidateQR: NextPage<{}> = () => {
             xl={{ span: 3, push: 3 }}
             xxl={{ span: 2, push: 3 }}
           >
-            <IndexSendContainer>
+            <ValidateQrStyles.IndexSendContainer>
               <PrimaryButton>
                 <Button
                   size="large"
@@ -155,7 +155,7 @@ const ValidateQR: NextPage<{}> = () => {
                   Verificar
                 </Button>
               </PrimaryButton>
-            </IndexSendContainer>
+            </ValidateQrStyles.IndexSendContainer>
           </Col>
         </Row>
         <Row style={{ marginTop: 20 }}>
@@ -166,7 +166,7 @@ const ValidateQR: NextPage<{}> = () => {
             xl={{ span: 3, push: 3 }}
             xxl={{ span: 2, push: 3 }}
           >
-            <IndexSendContainer>
+            <ValidateQrStyles.IndexSendContainer>
               <InversePrimaryButton>
                 <Button
                   size="large"
@@ -177,11 +177,11 @@ const ValidateQR: NextPage<{}> = () => {
                   Descargar
                 </Button>
               </InversePrimaryButton>
-            </IndexSendContainer>
+            </ValidateQrStyles.IndexSendContainer>
           </Col>
         </Row>
         <NotificationContainer />
-      </IndexContainer>
+      </ValidateQrStyles.IndexContainer>
     )
   }
 
