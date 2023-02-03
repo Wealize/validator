@@ -5,7 +5,7 @@ import { Button, Col, Row } from 'antd'
 import styled from 'styled-components'
 
 import { primary, black } from '../theme/color'
-import PrimaryButton from '../components/PrimaryButton'
+import { PrimaryButton } from '../components/PrimaryButton'
 import Paragraph from '../components/Paragraph'
 import { Title } from '../components/atomic_components/Text/variants'
 import ApiClient from '../services/ApiClient'

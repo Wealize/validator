@@ -8,7 +8,7 @@ import moment from 'moment'
 
 import { primary, black } from '../theme/color'
 import Paragraph from '../components/Paragraph'
-import PrimaryButton from '../components/PrimaryButton'
+import { PrimaryButton } from '../components/PrimaryButton'
 import { Title } from '../components/atomic_components/Text/variants'
 
 const SuccessPage = () => {
@@ -39,7 +39,8 @@ const SuccessPage = () => {
           <SuccessParagraph data-cy="first-paragraph">
             <Paragraph>
               El proceso ha sido llevado cabo con éxito. <br />
-              Tu documento corresponde con una notarización en la RedT de Alastria
+              Tu documento corresponde con una notarización en la RedT de
+              Alastria
               {/*  con fecha del{' '}
               {moment.unix(timestamp).format('DD/MM/YYYY - HH:mm:ss')}  */}
               <br />
