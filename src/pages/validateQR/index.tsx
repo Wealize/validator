@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { Button, Upload, Layout, Col, Row } from 'antd'
+import { UploadOutlined } from '@ant-design/icons'
+import styled from 'styled-components'
+
 import ApiClient from '../../services/ApiClient'
 import Loader from '../../components/Loader'
 import Paragraph from '../../components/Paragraph'
@@ -12,7 +15,7 @@ import {
 } from '../../components/PrimaryButton'
 import { NotificationContainer, NotificationManager } from 'react-notifications'
 import 'react-notifications/lib/notifications.css'
-import ValidateQrStyles from './style'
+import { IndexContainer, IndexParagraph, IndexSendContainer, IndexTitle } from './style'
 
 const ValidateQR: NextPage<{}> = () => {
   const [uploadedFile, setUploadedFile] = useState<File>()
@@ -23,6 +26,7 @@ const ValidateQR: NextPage<{}> = () => {
     try {
       getFileFromUuid(uuid)
     } catch (error) {
+      // console.log('error', error)
     }
   }, [uuid])
 
@@ -104,17 +108,17 @@ const ValidateQR: NextPage<{}> = () => {
 
   const renderUploadFileView = () => {
     return (
-      <ValidateQrStyles.IndexContainer>
+      <IndexContainer>
         <Row>
           <Col
             xs={{ span: 20, push: 2 }}
             lg={{ span: 14, push: 2 }}
             xl={{ span: 14, push: 3 }}
           >
-            <ValidateQrStyles.IndexTitle data-cy="title">
+            <IndexTitle data-cy="title">
               Te damos la bienvenida al Servicio de Verificación de documentos
               en blockchain
-            </ValidateQrStyles.IndexTitle>
+            </IndexTitle>
           </Col>
         </Row>
         <Row>
@@ -124,14 +128,14 @@ const ValidateQR: NextPage<{}> = () => {
             xl={{ span: 10, push: 3 }}
           >
             <Paragraph>
-              <ValidateQrStyles.IndexParagraph data-cy="first-paragraph">
+              <IndexParagraph data-cy="first-paragraph">
                 Izertis te permite contrastar cualquier documento notarizado en
                 blockchain en la Red T de Alastria.
                 <br />
                 Para verificar el documento del que has escaneado el QR, debes
                 pulsar el botón VERIFICAR. Si lo deseas, puedes descargarte una
                 copia del mismo en el botón DESCARGAR.
-              </ValidateQrStyles.IndexParagraph>
+              </IndexParagraph>
             </Paragraph>
           </Col>
         </Row>
@@ -144,7 +148,7 @@ const ValidateQR: NextPage<{}> = () => {
             xl={{ span: 3, push: 3 }}
             xxl={{ span: 2, push: 3 }}
           >
-            <ValidateQrStyles.IndexSendContainer>
+            <IndexSendContainer>
               <PrimaryButton>
                 <Button
                   size="large"
@@ -155,7 +159,7 @@ const ValidateQR: NextPage<{}> = () => {
                   Verificar
                 </Button>
               </PrimaryButton>
-            </ValidateQrStyles.IndexSendContainer>
+            </IndexSendContainer>
           </Col>
         </Row>
         <Row style={{ marginTop: 20 }}>
@@ -166,7 +170,7 @@ const ValidateQR: NextPage<{}> = () => {
             xl={{ span: 3, push: 3 }}
             xxl={{ span: 2, push: 3 }}
           >
-            <ValidateQrStyles.IndexSendContainer>
+            <IndexSendContainer>
               <InversePrimaryButton>
                 <Button
                   size="large"
@@ -177,11 +181,11 @@ const ValidateQR: NextPage<{}> = () => {
                   Descargar
                 </Button>
               </InversePrimaryButton>
-            </ValidateQrStyles.IndexSendContainer>
+            </IndexSendContainer>
           </Col>
         </Row>
         <NotificationContainer />
-      </ValidateQrStyles.IndexContainer>
+      </IndexContainer>
     )
   }
 
