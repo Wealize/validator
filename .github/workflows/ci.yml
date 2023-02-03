@@ -25,8 +25,8 @@ jobs:
       - name: Increase watchers limit
         run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 
-      # - name: Run unit tests
-      #   run: yarn jest
+      - name: Run unit tests
+        run: yarn jest
 
       - name: Run integration tests
         uses: cypress-io/github-action@v1
