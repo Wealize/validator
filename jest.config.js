@@ -5,6 +5,7 @@ module.exports = {
   testPathIgnorePatterns: [
     '<rootDir>/__tests__/e2e',
     '<rootDir>/__tests__/__mocks__',
-    '<rootDir>/test'
+    '<rootDir>/test',
+    '<rootDir>/src'
   ]
 }
