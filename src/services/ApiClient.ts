@@ -1,7 +1,6 @@
 import axios from 'axios'
 export default class ApiClient {
-  private static API_NODE =
-    'https://certification-staging.herokuapp.com/api'
+  private static API_NODE = process.env.CERTIFICATION_URL;
   static API_NAMES = {
     UUID: `/uuid`,
     VERIFY: `/certifications/verify`
