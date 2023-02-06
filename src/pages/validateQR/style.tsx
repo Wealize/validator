@@ -52,3 +52,4 @@ export const IndexSendContainer = styled.div`
   }
 `
 
+export default IndexTitle
