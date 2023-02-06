@@ -14,7 +14,7 @@ import { Title } from '../components/atomic_components/Text/variants'
 const SuccessPage = () => {
   const router = useRouter()
   const timestamp = parseInt(router.query.timestamp as string)
-  const transactionHash = router.query.transactionHash as string
+  const url = router.query.url as string
 
   return (
     <div>
@@ -47,7 +47,7 @@ const SuccessPage = () => {
               Si deseas conocer más detalles técnicos acerca de tu documento en
               blockchain visita el siguiente enlace de{' '}
               <a
-                href={`https://blkexplorer1.telsius.alastria.io/transaction/${transactionHash}`}
+                href={`${url}`}
                 target="_blank"
                 rel="noreferrer"
               >
