@@ -38,7 +38,7 @@ const FileVerification: NextPage<{}> = () => {
       )
       if (message == 'OK') {
         router.push(
-          `/success?timestamp=${url}&transactionHash=${hash}`,
+          `/success?timestamp=${url}&url=${url}`,
           '/success'
         )
       } else {

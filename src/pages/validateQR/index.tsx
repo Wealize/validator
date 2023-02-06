@@ -88,7 +88,7 @@ const ValidateQR: NextPage<{}> = () => {
         const { error, message, hash, url }: any = responseVerifyFile
         if (message == 'OK') {
           router.push(
-            `/success?uuid=${uuid}&transactionHash=${hash}`,
+            `/success?uuid=${uuid}&url=${url}`,
             '/success'
           )
         } else {
