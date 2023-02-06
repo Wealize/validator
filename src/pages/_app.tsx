@@ -10,7 +10,7 @@ import TopBar from '../components/TopBar'
 
 class ExtendedApp extends App {
   public render() {
-    const { Component, pageProps } = this.props
+    const { Component, pageProps }:any = this.props
 
     return (
       <React.Fragment>

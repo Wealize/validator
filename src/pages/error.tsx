@@ -5,13 +5,26 @@ import { Button, Col, Row } from 'antd'
 import styled from 'styled-components'
 
 import { primary, black } from '../theme/color'
-import PrimaryButton from '../components/PrimaryButton'
+import { PrimaryButton } from '../components/PrimaryButton'
 import Paragraph from '../components/Paragraph'
 import { Title } from '../components/atomic_components/Text/variants'
+import ApiClient from '../services/ApiClient'
 
 const ErrorPage = () => {
   const router = useRouter()
-  
+  const error = router.query.error as string
+
+  const formatTextWithLineBreaks = (text: string) => {
+    const phrase = text.split('\n')
+    return phrase.map((line, index) => {
+      return (
+        <>
+          {line}
+          {index != phrase.length - 1 && <br />}
+        </>
+      )
+    })
+  }
   return (
     <div>
       <Row>
@@ -32,8 +45,7 @@ const ErrorPage = () => {
         >
           <ErrorParagraph data-cy="first-paragraph">
             <Paragraph>
-              No encontramos este documento en la RedT de Alastria. <br />
-              Por favor, confirma tu fichero y vuelve a intentarlo.
+              {ApiClient.getErrorDescription(error, formatTextWithLineBreaks)}
             </Paragraph>
           </ErrorParagraph>
         </Col>
@@ -52,7 +64,7 @@ const ErrorPage = () => {
                 data-cy="send-button"
                 type="primary"
                 onClick={() => {
-                  router.push('/')
+                  router.back()
                 }}
               >
                 Volver

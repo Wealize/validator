@@ -17,13 +17,13 @@ export const getFileHash = (
   req: NextApiRequest
 ): Promise<{ fileHash: string }> => {
   return new Promise((resolve, reject) => {
-    const form = new formidable.IncomingForm()
+    const form:any = new formidable.IncomingForm()
     form.hash = 'sha256'
     form.parse(req, (error, _field: Fields, file: Files) => {
       if (error) {
         reject(new Error(`There was a server error: ${error}`))
       }
-      const parsedFile = file[Object.keys(file)[0]] // Get file from object, no matter what key name was used
+      const parsedFile:any = file[Object.keys(file)[0]] // Get file from object, no matter what key name was used
       resolve({ fileHash: parsedFile.hash })
     })
   })

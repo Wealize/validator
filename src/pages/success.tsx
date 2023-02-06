@@ -8,7 +8,7 @@ import moment from 'moment'
 
 import { primary, black } from '../theme/color'
 import Paragraph from '../components/Paragraph'
-import PrimaryButton from '../components/PrimaryButton'
+import { PrimaryButton } from '../components/PrimaryButton'
 import { Title } from '../components/atomic_components/Text/variants'
 
 const SuccessPage = () => {
@@ -40,8 +40,10 @@ const SuccessPage = () => {
             <Paragraph>
               El proceso ha sido llevado cabo con éxito. <br />
               Tu documento corresponde con una notarización en la RedT de
-              Alastria con fecha del{' '}
-              {moment.unix(timestamp).format('DD/MM/YYYY - HH:mm:ss')} <br />
+              Alastria
+              {/*  con fecha del{' '}
+              {moment.unix(timestamp).format('DD/MM/YYYY - HH:mm:ss')}  */}
+              <br />
               Si deseas conocer más detalles técnicos acerca de tu documento en
               blockchain visita el siguiente enlace de{' '}
               <a
@@ -69,7 +71,7 @@ const SuccessPage = () => {
                 data-cy="send-button"
                 type="primary"
                 onClick={() => {
-                  router.push('/')
+                  router.back()
                 }}
               >
                 Verificar otro fichero

@@ -9,11 +9,14 @@ import styled from 'styled-components'
 import ApiClient from '../services/ApiClient'
 import Loader from '../components/Loader'
 import Paragraph from '../components/Paragraph'
-import PrimaryButton from '../components/PrimaryButton'
+import { PrimaryButton } from '../components/PrimaryButton'
 import UploadButton from '../components/UploadButton'
 import { backgroundGray, primary, black } from '../theme/color'
 import media from '../theme/media'
-import { DescriptionText, PageTitle } from '../components/atomic_components/Text/variants'
+import {
+  DescriptionText,
+  PageTitle
+} from '../components/atomic_components/Text/variants'
 
 const FileVerification: NextPage<{}> = () => {
   const [uploadedFile, setUploadedFile] = useState<File>()
@@ -28,29 +31,22 @@ const FileVerification: NextPage<{}> = () => {
   }
 
   const uploadFile = async () => {
-    const formData = await createFormData()
     setIsProcessingRequest(true)
     try {
-      const { is_file_stored, timestamp, hash } = await ApiClient.verifyFile(
-        formData
+      const { error, message, hash, url }: any = await ApiClient.verifyFile(
+        uploadedFile
       )
-      if (is_file_stored) {
+      if (message == 'OK') {
         router.push(
-          `/success?timestamp=${timestamp}&transactionHash=${hash}`,
+          `/success?timestamp=${url}&transactionHash=${hash}`,
           '/success'
         )
       } else {
-        router.push('/error')
+        router.push('/error?error=' + error)
       }
     } catch (error) {
-      router.push('/error')
+      router.push('/error?error=' + error)
     }
-  }
-
-  const createFormData = async () => {
-    const formData = new FormData()
-    formData.append('file', uploadedFile)
-    return formData
   }
 
   const renderLoadingView = () => {
