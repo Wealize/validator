@@ -15,7 +15,12 @@ import {
 } from '../../components/PrimaryButton'
 import { NotificationContainer, NotificationManager } from 'react-notifications'
 import 'react-notifications/lib/notifications.css'
-import { IndexContainer, IndexParagraph, IndexSendContainer, IndexTitle } from './style'
+import {
+  IndexContainer,
+  IndexTitle,
+  IndexParagraph,
+  IndexSendContainer
+} from './style'
 
 const ValidateQR: NextPage<{}> = () => {
   const [uploadedFile, setUploadedFile] = useState<File>()
@@ -85,10 +90,10 @@ const ValidateQR: NextPage<{}> = () => {
           return
         }
         const responseVerifyFile: any = await ApiClient.verifyFile(file)
-        const { error, message, hash, url }: any = responseVerifyFile
+        const { error, message, hash, url, timestamp }: any = responseVerifyFile
         if (message == 'OK') {
           router.push(
-            `/success?uuid=${uuid}&url=${url}`,
+            `/success?timestamp=${timestamp}&url=${url}&hash=${hash}`,
             '/success'
           )
         } else {
@@ -191,6 +196,5 @@ const ValidateQR: NextPage<{}> = () => {
 
   return isProcessingRequest ? renderLoadingView() : renderUploadFileView()
 }
-
 
 export default ValidateQR

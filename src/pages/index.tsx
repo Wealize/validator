@@ -33,14 +33,10 @@ const FileVerification: NextPage<{}> = () => {
   const uploadFile = async () => {
     setIsProcessingRequest(true)
     try {
-      const { error, message, hash, url }: any = await ApiClient.verifyFile(
-        uploadedFile
-      )
+      const { error, message, hash, url, timestamp }: any =
+        await ApiClient.verifyFile(uploadedFile)
       if (message == 'OK') {
-        router.push(
-          `/success?timestamp=${url}&url=${url}`,
-          '/success'
-        )
+        router.push(`/success?timestamp=${timestamp}&url=${url}&hash=${hash}`, '/success')
       } else {
         router.push('/error?error=' + error)
       }

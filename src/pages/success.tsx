@@ -13,8 +13,9 @@ import { Title } from '../components/atomic_components/Text/variants'
 
 const SuccessPage = () => {
   const router = useRouter()
-  const timestamp = parseInt(router.query.timestamp as string)
+  const timestamp = router.query.timestamp as string
   const url = router.query.url as string
+  const hash = router.query.hash as string
 
   return (
     <div>
@@ -38,19 +39,15 @@ const SuccessPage = () => {
         >
           <SuccessParagraph data-cy="first-paragraph">
             <Paragraph>
-              El proceso ha sido llevado cabo con éxito. <br />
+              El proceso ha sido llevado a cabo con éxito. <br />
               Tu documento corresponde con una notarización en la RedT de
-              Alastria
-              {/*  con fecha del{' '}
-              {moment.unix(timestamp).format('DD/MM/YYYY - HH:mm:ss')}  */}
+              Alastria con fecha{' '}
+              {moment(timestamp).format('DD/MM/YYYY - HH:mm:ss')} con el
+              identificador {hash}
               <br />
               Si deseas conocer más detalles técnicos acerca de tu documento en
               blockchain visita el siguiente enlace de{' '}
-              <a
-                href={`${url}`}
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a href={`${url}`} target="_blank" rel="noreferrer">
                 Alastria Telsius Explorer.
               </a>
             </Paragraph>
