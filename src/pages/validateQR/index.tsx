@@ -92,7 +92,7 @@ const ValidateQR: NextPage<{}> = () => {
         const responseVerifyFile: any = await ApiClient.verifyFile(file)
         const { error, message, hash, url, timestamp }: any = responseVerifyFile
         if (message == 'OK') {
-          router.push(`/success?timestamp=${timestamp}&url=${url}`, '/success')
+          router.push(`/success?timestamp=${timestamp}&url=${url}&hash=${hash}`, '/success')
         } else {
           const errorCode = ApiClient.getErrorCode(error)
           router.push(`/error?error=${errorCode}`)
