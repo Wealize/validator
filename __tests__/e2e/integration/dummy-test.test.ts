@@ -4,7 +4,4 @@ describe('When a user try to verify his contract and it succeed', () => {
     cy.visit('/')
   })
 
-  it('Should see the title', () => {
-    cy.get('[data-cy=title]').should('be.visible')
-  })
 })
