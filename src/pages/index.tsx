@@ -35,7 +35,7 @@ const FileVerification: NextPage<{}> = () => {
     try {
       const { error, message, hash, url, timestamp }: any =
         await ApiClient.verifyFile(uploadedFile)
-      if (message == 'OK') {
+      if (message === 'OK') {
         router.push(`/success?timestamp=${timestamp}&url=${url}&hash=${hash}`, '/success')
       } else {
         router.push('/error?error=' + error)

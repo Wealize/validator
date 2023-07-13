@@ -1,5 +1,6 @@
 import { Layout, Upload } from "antd"
 import styled from "styled-components"
+
 import { DescriptionText, PageTitle } from "../../components/atomic_components/Text/variants"
 import { backgroundGray, black } from "../../theme/color"
 import media from '../../theme/media'
