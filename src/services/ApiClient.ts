@@ -4,7 +4,7 @@ export default class ApiClient {
   static API_NAMES = {
     UUID: `/uuid`,
     VERIFY: `/certifications/verify`,
-    VERIFY_V2: `v2/certifications/verify`
+    VERIFY_V2: `/v2/certifications/verify`
   }
   static API_ERRORS = {
     ERR_BAD_REQUEST: 'ERR_BAD_REQUEST',
@@ -14,26 +14,23 @@ export default class ApiClient {
   static async verifyFile(file: File) {
     const formData = new FormData()
     formData.append('file', file, file.name)
-    var requestOptions = {
-      method: 'PUT',
-      body: formData
-      // redirect: 'follow'
-    }
-    let response: Response
+
+    let response
+
     try {
-      response = await fetch(
+      response = await axios.put(
         `${ApiClient.API_NODE}${ApiClient.API_NAMES.VERIFY}`,
-        requestOptions
+        formData
       )
       if (!response.ok) throw ''
     } catch (error) {
-      response = await fetch(
+      response = await axios.put(
         `${ApiClient.API_NODE}${ApiClient.API_NAMES.VERIFY_V2}`,
-        requestOptions
+        formData
       )
     } finally {
-      const responseData = await response.text()
-      return JSON.parse(responseData)
+      const responseData = await response.data
+      return responseData
     }
   }
   static async getIPSFFromUuid(uuid) {
