@@ -4,7 +4,7 @@ if (process.env.NODE_ENV !== 'production') {
 const getAllAllowedEnvironmentVariables = () => {
   return Object.entries(process.env).reduce(
     (vars, [name, value]) =>
-      /^(?:__|NODE_)/.test(name) ? vars : { ...vars, [name]: value },
+      /^(?:__|NODE_)/.test(name) || name === 'NEXT_RUNTIME' ? vars : { ...vars, [name]: value },
     {}
   )
 }
