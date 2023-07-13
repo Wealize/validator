@@ -1,9 +1,10 @@
 import axios from 'axios'
 export default class ApiClient {
-  private static API_NODE = process.env.CERTIFICATION_URL;
+  private static API_NODE = process.env.CERTIFICATION_URL
   static API_NAMES = {
     UUID: `/uuid`,
-    VERIFY: `/certifications/verify`
+    VERIFY: `/certifications/verify`,
+    VERIFY_V2: `v2/certifications/verify`
   }
   static API_ERRORS = {
     ERR_BAD_REQUEST: 'ERR_BAD_REQUEST',
@@ -18,13 +19,22 @@ export default class ApiClient {
       body: formData
       // redirect: 'follow'
     }
-
-    const response = await fetch(
-      `${ApiClient.API_NODE}${ApiClient.API_NAMES.VERIFY}`,
-      requestOptions
-    ).then((response) => response.text())
-
-    return JSON.parse(response)
+    let response: Response
+    try {
+      response = await fetch(
+        `${ApiClient.API_NODE}${ApiClient.API_NAMES.VERIFY}`,
+        requestOptions
+      )
+      if (!response.ok) throw ''
+    } catch (error) {
+      response = await fetch(
+        `${ApiClient.API_NODE}${ApiClient.API_NAMES.VERIFY_V2}`,
+        requestOptions
+      )
+    } finally {
+      const responseData = await response.text()
+      return JSON.parse(responseData)
+    }
   }
   static async getIPSFFromUuid(uuid) {
     const url = `${ApiClient.API_NODE}${ApiClient.API_NAMES.UUID}/${uuid}`
