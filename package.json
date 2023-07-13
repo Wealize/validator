@@ -18,6 +18,9 @@
     "cypress": "start-server-and-test dev http://localhost:3000 cypress-run",
     "local-ethereum": "ganache-cli"
   },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "dependencies": {
     "antd": "^4.6.6",
     "axios": "^1.2.6",
