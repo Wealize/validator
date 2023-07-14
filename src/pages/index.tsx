@@ -14,7 +14,6 @@ import UploadButton from '../components/UploadButton'
 import { backgroundGray, primary, black } from '../theme/color'
 import media from '../theme/media'
 import {
-  DescriptionText,
   PageTitle
 } from '../components/atomic_components/Text/variants'
 
