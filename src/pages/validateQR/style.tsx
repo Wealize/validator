@@ -25,7 +25,7 @@ export const IndexTitle = styled(PageTitle)`
   `}
 `
 
-export const IndexParagraph = styled(DescriptionText)`
+export const IndexParagraph = styled.div`
   margin-bottom: 64px;
 `
 

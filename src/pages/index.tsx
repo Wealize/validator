@@ -69,14 +69,14 @@ const FileVerification: NextPage<{}> = () => {
             lg={{ span: 14, push: 2 }}
             xl={{ span: 10, push: 3 }}
           >
-            <Paragraph>
-              <IndexParagraph data-cy="first-paragraph">
+            <IndexParagraph data-cy="first-paragraph">
+              <Paragraph>
                 Izertis te permite contrastar un documento en tu poder con un
                 documento previamente notarizado en la RedT de Alastria. <br />
                 Para poder hacer la verificación adjunta tu archivo y haz click
                 en “ENVIAR”.
-              </IndexParagraph>
-            </Paragraph>
+              </Paragraph>
+            </IndexParagraph>
           </Col>
         </Row>
 
@@ -153,9 +153,9 @@ const IndexTitle = styled(PageTitle)`
   `}
 `
 
-const IndexParagraph = styled(DescriptionText)`
+const IndexParagraph = styled.div`
   margin-bottom: 64px;
-`
+  `
 
 const IndexUploadContainer = styled(Upload)`
   width: 100%;

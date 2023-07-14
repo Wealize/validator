@@ -131,13 +131,13 @@ const ValidateQR: NextPage<{}> = () => {
             lg={{ span: 14, push: 2 }}
             xl={{ span: 10, push: 3 }}
           >
-            <Paragraph>
-              <IndexParagraph data-cy="first-paragraph">
-                Izertis te permite contrastar cualquier documento notarizado en blockchain en la Red T de Alastria.
-                <br />
-                Para verificar el documento del que has escaneado el QR, debes pulsar el botón VERIFICAR. Si lo deseas, puedes descargarte una copia del mismo en el botón DESCARGAR.
-              </IndexParagraph>
-            </Paragraph>
+            <IndexParagraph data-cy="first-paragraph">
+              <Paragraph>
+                  Izertis te permite contrastar cualquier documento notarizado en blockchain en la Red T de Alastria.
+                  <br />
+                  Para verificar el documento del que has escaneado el QR, debes pulsar el botón VERIFICAR. Si lo deseas, puedes descargarte una copia del mismo en el botón DESCARGAR.
+              </Paragraph>
+            </IndexParagraph>
           </Col>
         </Row>
 
