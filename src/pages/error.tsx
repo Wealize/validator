@@ -20,7 +20,7 @@ const ErrorPage = () => {
       return (
         <>
           {line}
-          {index != phrase.length - 1 && <br />}
+          {index !== phrase.length - 1 && <br />}
         </>
       )
     })

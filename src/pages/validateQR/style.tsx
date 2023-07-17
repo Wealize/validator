@@ -1,6 +1,7 @@
 import { Layout, Upload } from "antd"
 import styled from "styled-components"
-import { DescriptionText, PageTitle } from "../../components/atomic_components/Text/variants"
+
+import { PageTitle } from "../../components/atomic_components/Text/variants"
 import { backgroundGray, black } from "../../theme/color"
 import media from '../../theme/media'
 
@@ -24,7 +25,7 @@ export const IndexTitle = styled(PageTitle)`
   `}
 `
 
-export const IndexParagraph = styled(DescriptionText)`
+export const IndexParagraph = styled.div`
   margin-bottom: 64px;
 `
 

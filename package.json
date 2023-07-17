@@ -18,14 +18,17 @@
     "cypress": "start-server-and-test dev http://localhost:3000 cypress-run",
     "local-ethereum": "ganache-cli"
   },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "dependencies": {
     "antd": "^4.6.6",
     "axios": "^1.2.6",
     "formidable": "^1.2.2",
     "moment": "^2.29.0",
-    "next": "^9.3.6",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "next": "^13.4.9",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-notifications": "^1.7.4",
     "styled-components": "^5.1.0",
     "styled-media-query": "^2.1.2",
